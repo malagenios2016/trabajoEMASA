@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>
+            <ui:insert name="title">Facelets Template</ui:insert>
+        </title>
+    </h:head>
+
+    <h:body>
+        <div id="top" class="top">
+            <h:form id="menu">
+                <c:if test="#{!empty controlAutorizacion.usuario}">
+                    <img id="imagemasa" src="./resources/css/emasa_grande.jpg" />
+                </c:if>
+                <div id ="inicio"><h:commandLink action="#{controlAutorizacion.home()}" value="Inicio"/></div>
+                <c:if test="#{!empty controlAutorizacion.usuario}">
+                    <div id="salir"><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></div>
+                </c:if>
+                <c:if test="#{!empty controlAutorizacion.usuario}">
+                    <h1 id="avisos">Lista De Avisos</h1>
+                    <div id="listAvisos">
+                        <h:dataTable value="#{formulario.listaAvisos}" var="dato">
+                            <h:column>
+                                <f:facet name="header">
+                                <h:outputText value="#{aviso.nombre}"></h:outputText>
+                                </f:facet>
+                            </h:column> 
+                        </h:dataTable>
+                    </div>
+                    <c:if test="#{controlAutorizacion.usuario.rol == 'OPERARIO'}">
+                        <h:commandButton value="Modificar" action="#{formulario.modificar()}" style="margin-top: -150px;position: fixed;font-size: 20px"/>
+                    </c:if>
+                    <c:if test="#{controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
+                        <h:commandButton value="Modificar" action="#{formulario.modificar()}" style="margin-top: -150px;position: fixed;font-size: 20px"/>
+                        <h:commandButton value="Eliminar"  action="#{formulario.eliminar()}"   style="margin-top: -150px;position: fixed;font-size: 20px;margin-left: 120px"/>
+                       
+                        <h:commandButton id="crearButton1" value="Crear" action="#{formulario.crear(dato)}" style="margin-top: -150px;position: fixed;font-size: 20px;margin-left: 450px"/>
+                    </c:if>
+                    <c:if test="#{controlAutorizacion.usuario.rol == 'CALLCENTER'}">
+                        <h:commandButton  id="crearButton1" value="Crear" action="#{formulario.crear()}" style="margin-top: -150px;position: fixed;font-size: 20px"/>
+                    </c:if>
+                    <h2 id="NuevoAviso"> Nuevo Aviso</h2>
+                    <table id="tiposAvisos">
+                        <tr>
+                            <td>0.Identificador: </td>
+                            <td><h:inputText  id="identificador" value="#{aviso.id}"/></td>
+                        </tr>
+                        <tr>
+                            <td>1.Usuario/Interlocutor: </td>
+                            <td><h:inputText  id="textUsuario" value="#{aviso.usuario}"/></td>
+                            <td>
+                                <select name="selector">
+                                    <option value="0">Tipo de Aviso</option>
+                                    <option value="1">Reparación de Arqueta</option>
+                                    <option value="2">Rotura de Tubería</option>
+                                    <option value="3">Atoro de varias tuberias</option>
+                                    <option value="4">Limpieza de alcantarillas</option> 
+                                    <option value="5">Control de aguas residuales</option> 
+                                    <option value="6">Reparación alcantarilla</option> 
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2.Teléfono: </td>
+                            <td><h:inputText value="#{aviso.telefono}"/></td>
+                          
+                        </tr>
+                        <tr>
+                            <td>3.Nombre: </td>  
+                            <td><h:inputText value="#{aviso.nombre}"/></td>
+                            <td>
+                                <select name="selector" value="#{aviso.estado}">
+                                    <option value="0">Estado del Aviso</option>
+                                    <option value="1">En Cola</option>
+                                    <option value="2">Abierto</option>
+                                    <option value="3">Despachado a movilidad</option> 
+                                    <option value="4">Despachado a impreso</option> 
+                                    <option value="5">Generada OT</option> 
+                                    <option value="6">Cerrado</option> 
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4.Ubicación del aviso: </td>
+                            <td><h:inputText value="#{aviso.ubicacion}"/></td>
+                           
+                        </tr>
+                        <tr>
+                            <td>5.Datos Descriptivos: </td>
+                            <td><h:inputText value="#{aviso.datos}"/></td>
+                        </tr>
+                        <tr>
+                            <td>6.Póliza: </td>
+                            <td><h:inputText value="#{aviso.poliza}"/></td>
+                        </tr>
+
+
+                    </table>
+
+
+
+                </c:if>
+            </h:form>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+    </h:body>
+
+</html>

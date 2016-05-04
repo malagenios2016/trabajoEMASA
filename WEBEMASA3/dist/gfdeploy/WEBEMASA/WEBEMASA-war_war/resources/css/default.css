@@ -1,0 +1,79 @@
+body {
+    background-color: aliceblue;
+    font-size: 15px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: auto;
+    width: 300px;
+    height: 250px;
+    margin-top: 120px;
+    padding:0;
+    overflow: auto;
+    
+}
+
+#emasa{
+    width: 300px;
+    height: 60px;
+    padding: 0px;
+    margin-left: -200px;
+    margin-top:-100px;
+    position:fixed;
+}
+
+#imagemasa{
+    width: 300px;
+    height: 60px;
+    padding: 0px;
+    margin-left: -130px;
+    margin-top:-100px;
+    position:fixed;
+}
+
+#inicio{
+    margin-left: 900px;
+    margin-top: -80px;
+    position :fixed;
+}
+
+#salir{
+    margin-left: 800px;
+    margin-top: -80px;
+    position :fixed;
+}
+
+
+#tabla{
+    border: 2px solid blue;
+    height: 250px;
+    width: 250px;
+    background: lightblue;
+    border-radius: 22px 22px 22px 22px;
+}
+
+#tiposAvisos{
+    position: fixed;
+    margin-top: -450px;
+    font-size: 30px;
+}
+
+#textUsuario{
+    width: 50px;
+    height: 20px;
+}
+
+
+#crearButton1{
+    width:100px;
+    height:100px;
+}
+
+
+#NuevoAviso{
+   font: 400 40px/1.5 Helvetica, Verdana, sans-serif;
+   margin-top:-580px;
+   padding:0;
+   position:fixed;
+   
+    
+}
